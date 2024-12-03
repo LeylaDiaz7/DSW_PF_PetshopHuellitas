@@ -1,0 +1,86 @@
+﻿@model IEnumerable<PetShop_Huellitas.Models.Producto>
+
+@{
+    ViewData["Title"] = "Gestión de productos";
+}
+
+<h1>Gestión de Productos</h1>
+
+@if (TempData["mensaje"] != null)
+{
+    <div class="alert alert-info">
+        <h4><strong>@TempData["mensaje"]</strong></h4>
+    </div>
+}
+
+<p>
+    <a asp-action="CreateProducto">Nuevo Producto</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Marca)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NombreCategoria)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Detalles)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UrlImg)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Stock)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Precio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Activo)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Marca)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreCategoria)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Detalles)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UrlImg)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Stock)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Precio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Activo)
+            </td>
+            <td>
+                    @Html.ActionLink("Edit", "EditProducto", new {id=item.IdPro }) |
+                    @Html.ActionLink("Detalle", "DetailsProducto", new { id=item.IdPro }) |
+                    @Html.ActionLink("Delete", "DeleteProducto", new {  id=item.IdPro })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

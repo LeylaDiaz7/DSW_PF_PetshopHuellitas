@@ -1,19 +1,36 @@
-﻿namespace PetShop_Huellitas.Models
+﻿using System.ComponentModel;
+
+namespace PetShop_Huellitas.Models
 {
     public class Producto
     {
+        [DisplayName("Codigo")]
         public int IdPro { get; set; }
-        public string Marca { get; set; }
+
+        [DisplayName("Marca")]
+        public String Marca { get; set; } = "";
         public int IdCategoria { get; set; }
-        public string Nombre { get; set; }
-        public string Detalles { get; set; }
-        public string UrlImg { get; set; }
+
+        [DisplayName("Categoría")]
+        public String NombreCategoria { get; set; } = "";
+
+        [DisplayName("Producto")]
+        public String Nombre { get; set; } = "";
+
+        public String Detalles { get; set; } = "";
+
+        [DisplayName("Imagen")]
+        public String UrlImg { get; set; } = "";
+
+        [DisplayName("Fecha de registro")]
         public DateTime FechaRegistro { get; set; } = DateTime.Now;
         public int Stock { get; set; }
         public decimal Precio { get; set; }
+
+        [DisplayName("¿Está Activo?")]
         public bool Activo { get; set; }
 
-        public Categoria Categoria { get; set; }
+        public Categoria? Categoria { get; set; }
     }
 
 }

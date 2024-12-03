@@ -1,4 +1,9 @@
+using PetShop_Huellitas.Dao;
+
 var builder = WebApplication.CreateBuilder(args);
+
+// Activando el DAO (para usarlo en todo el proyecto) Todos los daos existentes en el proyecto
+builder.Services.AddScoped<ProductoDAO>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
