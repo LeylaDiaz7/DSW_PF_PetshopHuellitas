@@ -1,0 +1,45 @@
+﻿@model PetShop_Huellitas.Models.Categoria
+
+@{
+    ViewData["Title"] = "EditarCategoria";
+    Layout = "~/Views/Shared/LayoutMaster.cshtml";
+}
+
+<h1>EditarCategoria</h1>
+
+
+<h4>Realiza los cambios necesarios que desees visualizar en la BD</h4>
+<hr />
+<div class="d-flex justify-content-center">
+    <div class="col-md-6">
+        <form asp-action="EditarCategoria">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="IdCategoria" class="control-label"></label>
+                <input asp-for="IdCategoria" class="form-control" />
+                <span asp-validation-for="IdCategoria" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Nombre" class="control-label"></label>
+                <input asp-for="Nombre" class="form-control" />
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Activo" /> @Html.DisplayNameFor(model => model.Activo)
+                </label>
+            </div>
+            <div class="text-center">
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="ListadoCategoria">Volver a Listar</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

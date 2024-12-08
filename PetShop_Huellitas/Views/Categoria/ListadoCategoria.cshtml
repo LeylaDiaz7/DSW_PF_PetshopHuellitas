@@ -1,0 +1,55 @@
+﻿@model IEnumerable<PetShop_Huellitas.Models.Categoria>
+
+@{
+    ViewData["Title"] = "ListadoCategoria";
+    Layout = "~/Views/Shared/LayoutMaster.cshtml";
+}
+
+<h1>ListadoCategoria</h1>
+
+<p>
+    <a asp-action="RegistrarCategoria" class="btn btn-primary">Nueva Categoria</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IdCategoria)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Activo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaRegistro)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdCategoria)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Activo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaRegistro)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "EditarCategoria", new { id = item.IdCategoria }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Eliminar", "EliminarCategoria", new { id = item.IdCategoria })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
