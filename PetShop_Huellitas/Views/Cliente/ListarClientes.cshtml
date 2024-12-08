@@ -1,0 +1,104 @@
+﻿@model IEnumerable<PetShop_Huellitas.Models.Cliente>
+
+@{
+    ViewData["Title"] = "ListarClientes";
+    Layout = "~/Views/Shared/LayoutMaster.cshtml";
+}
+
+<h1>Gestión de clientes</h1>
+
+<p>
+    <a asp-action="CrearCliente" class="btn btn-primary">Nuevo Cliente</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IdCli)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombres)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Apellidos)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Direccion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Telefono)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Dni)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Correo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Password)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaRegistro)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdCli)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombres)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Apellidos)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Direccion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telefono)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Dni)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Correo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Password)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaRegistro)
+            </td>
+                <td>
+                    @Html.ActionLink("Editar", "EditarCliente", new { id = item.IdCli }, new { @class = "btn btn-primary ml-2", @role = "button" }) |
+                    @*  @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |*@
+                    <button type="button" class="btn btn-danger ml-2" onclick="eliminarCliente(@item.IdCli)">Eliminar</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <script>
+        function eliminarCliente(idCli) {
+            if (confirm("¿Está seguro de que desea eliminar este cliente?")) {
+                var form = document.createElement("form");
+                form.method = "post";
+                form.action = "/Cliente/EliminarCliente";
+                var input = document.createElement("input");
+                input.type = "hidden";
+                input.name = "idCli";
+                input.value = idCli;
+                form.appendChild(input);
+                document.body.appendChild(form);
+                form.submit();
+            }
+        }
+    </script>
+}

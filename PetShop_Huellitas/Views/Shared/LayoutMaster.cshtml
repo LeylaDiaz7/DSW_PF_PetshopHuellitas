@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/Estilos.css" asp-append-version="true" />
+    <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+
+
+    <nav>
+
+        <div class="menu">
+            <a asp-controller="Cliente" asp-action="ListarClientes" class="menu-item">Clientes</a>
+            <a asp-controller="Producto" asp-action="IndexProductos" class="menu-item">Productos</a>
+            <a href="#" class="menu-item">Detalles</a>
+            <a href="#" class="menu-item">Ventas</a>
+            <a href="#" class="menu-item">Usuarios</a>
+            <a href="#" class="menu-item">Pedidos</a>
+            <a href="#" class="menu-item">Categorias</a>
+            <a href="#" class="menu-item">Marcas</a>
+        </div>
+
+    </nav>
+    <div>
+        @RenderBody()
+    </div>
+
+    @RenderSection("scripts", required: false);
+</body>
+</html>
