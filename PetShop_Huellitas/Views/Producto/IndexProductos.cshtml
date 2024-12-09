@@ -90,8 +90,14 @@
                                 <span class="badge bg-danger">Inactivo</span>
                             }
                         </td>
+                        @*
                         <td>
                             @Html.DisplayFor(modelItem => item.UrlImg)
+                    </td>*@
+                        <td>
+                            <img src="@Url.Content("/img/Productos/" + item.IdPro +".png")"
+                                 alt="@item.Nombre" 
+                                 style="width:80px;"/>
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.Stock)
