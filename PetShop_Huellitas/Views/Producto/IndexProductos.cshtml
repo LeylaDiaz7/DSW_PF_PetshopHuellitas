@@ -5,83 +5,142 @@
     Layout = "~/Views/Shared/LayoutMaster.cshtml";
 }
 
-<h1>Gestión de Productos</h1>
+<div class="container mt-2">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h1>Gestión de Productos</h1>
 
-@if (TempData["mensaje"] != null)
-{
-    <div class="alert alert-info">
-        <h4><strong>@TempData["mensaje"]</strong></h4>
+        @if (TempData["mensaje"] != null)
+        {
+            <div id="alerta" class="alert alert-warning">
+                <h4><strong>@TempData["mensaje"]</strong></h4>
+            </div>
+        }
+
+        <p>
+            <a asp-action="CreateProducto" class="btn btn-outline-success">Nuevo Producto</a>
+        </p>
     </div>
-}
+    <div class="table-responsive">
+        <table class="table table-striped table-hover table-rounded">
+            <thead>
+                <tr class="bg-warning">
+                    <th>
+                        @Html.DisplayNameFor(model => model.IdPro)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Nombre)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Marca)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.NombreCategoria)
+                    </th>
+                    @*
+                    <th>
+                    @Html.DisplayNameFor(model => model.Detalles)
+                    </th>
+                    *@
+                    <th>
+                        @Html.DisplayNameFor(model => model.Activo)
+                    </th>
 
-<p>
-    <a asp-action="CreateProducto">Nuevo Producto</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.UrlImg)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Stock)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Precio)
+                    </th>
+                    
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IdPro)
+                        </td>
 
-            <th>
-                @Html.DisplayNameFor(model => model.Nombre)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Marca)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NombreCategoria)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Detalles)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UrlImg)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Stock)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Precio)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Activo)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nombre)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Marca)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NombreCategoria)
+                        </td>
+                        @*
+                    <td>
+                    @Html.DisplayFor(modelItem => item.Detalles)
+                    </td>
+                    *@
+                        <td>
+                            @if (item.Activo)
+                            {
+                                <span class="badge bg-success">Activo</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-danger">Inactivo</span>
+                            }
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UrlImg)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Stock)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Precio)
+                        </td>
+                        
+                        <td>
+                            <div class="d-flex gap-2">
+                            @Html.ActionLink("Editar", "EditProducto", new {id=item.IdPro }, new { @class = "btn btn-primary btn-sm" }) |
+                                @Html.ActionLink("Detalle", "DetailsProducto", new { id=item.IdPro }, new { @class = "btn btn-secondary btn-sm" }) |
+                            @Html.ActionLink("Eliminar", "DeleteProducto", new {  id=item.IdPro }, new { @class = "btn btn-danger btn-sm" })
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Marca)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NombreCategoria)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Detalles)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UrlImg)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Stock)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Precio)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Activo)
-            </td>
-            <td>
-                    @Html.ActionLink("Edit", "EditProducto", new {id=item.IdPro }) |
-                    @Html.ActionLink("Detalle", "DetailsProducto", new { id=item.IdPro }) |
-                    @Html.ActionLink("Delete", "DeleteProducto", new {  id=item.IdPro })
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+    <div class="pagination mt-3">
+        <ul class="pagination justify-content-center">
+            @for (int i = 0; i < ViewBag.paginas; i++)
+            {
+                <li class="page-item @(i == ViewBag.nropag ? "active" : "")">
+                    <a class="page-link"
+                       asp-action="IndexProductos"
+                       asp-route-nropag="@i"
+                       asp-route-idprod="@ViewBag.idprod">
+                        @(i + 1)
+                    </a>
+                </li>
+            }
+        </ul>
+    </div>
+
+</div>
+
+<script>
+    // Configura el tiempo de visualización de la alerta (en milisegundos)
+    setTimeout(function () {
+        var alerta = document.getElementById("alerta");
+        if (alerta) {
+            alerta.style.transition = "opacity 0.5s ease-out";
+            alerta.style.opacity = "0";
+            setTimeout(function () {
+                alerta.remove();
+            }, 500); // Eliminar después de que la transición termine
+        }
+    }, 3000); // Mostrar por 3 segundos
+</script>

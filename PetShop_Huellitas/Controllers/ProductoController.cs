@@ -17,10 +17,32 @@ namespace PetShop_Huellitas.Controllers
             dao_product = product;
         }
 
-        public IActionResult IndexProductos()
+        public IActionResult IndexProductos(int nropag, int idprod)
         {
             var listado = dao_product.getProductos();
-            return View(listado);
+
+            // trayendo variables para ayudarme en la paginacion
+            ViewBag.idprod = idprod;
+
+            // Paginacion
+            int filas_pag = 10; //numero de filas por pagina
+            int contador = listado.Count; // cantidad de registros - horizontal
+            int paginas = 0; //cantidad de paginas a utilizar
+
+            if (contador % filas_pag == 0)
+            {
+                paginas = contador / filas_pag;
+            }
+            else //con resto diferente a 0
+            {
+                paginas= (contador / filas_pag) + 1;
+            }
+            
+            ViewBag.paginas = paginas;
+
+            return View(
+                listado.Skip(nropag * filas_pag).Take(filas_pag)
+            );
         }
 
         [HttpGet]

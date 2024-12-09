@@ -8,27 +8,48 @@
     <link rel="stylesheet" href="~/css/Estilos.css" asp-append-version="true" />
     <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
 </head>
 <body>
+
+    <header class="top-bar">
+        <div class="hamburger-menu">
+            <img src="@Url.Content("~/img/imgLM/hamburger.png")" alt="Menu" class="hamburger-icon">
+        </div>
+        <div class="welcome-container">
+            <span>Bienvenido, "nombre del usuario"</span>
+        </div>
+        <div class="user-photo-container">
+            <img src="@Url.Content("~/img/imgLM/user-photo.png")" alt="Foto Usuario" class="user-photo">
+        </div>
+    </header>
 
 
     <nav>
 
         <div class="menu">
-            <a asp-controller="Cliente" asp-action="ListarClientes" class="menu-item">Clientes</a>
-            <a asp-controller="Producto" asp-action="IndexProductos" class="menu-item">Productos</a>
-            <a href="#" class="menu-item">Detalles</a>
-            <a href="#" class="menu-item">Ventas</a>
-            <a href="#" class="menu-item">Usuarios</a>
-            <a href="#" class="menu-item">Pedidos</a>
-            <a asp-controller="Categoria" asp-action="ListadoCategoria" class="menu-item">Categorias</a>
-            <a href="#" class="menu-item">Marcas</a>
+
+            <div class="logo-container">
+                <img src="@Url.Content("~/img/imgLM/logo.png")" alt="logo">
+            </div>
+
+            <a asp-controller="Cliente" asp-action="ListarClientes" class="menu-item"><img class="icon" src="@Url.Content("~/img/imgLM/IconCli.png")">Clientes</a>
+            <a asp-controller="Producto" asp-action="IndexProductos" class="menu-item"><img class="icon" src="@Url.Content("~/img/imgLM/IconP.png")">Productos</a>
+            <a href="#" class="menu-item"><img class="icon" src="@Url.Content("~/img/imgLM/detalles.png")">Detalles</a>
+            <a href="#" class="menu-item"><img class="icon" src="@Url.Content("~/img/imgLM/IconVentas.png")">Ventas</a>
+            <a href="#" class="menu-item"><img class="icon" src="@Url.Content("~/img/imgLM/IconAdmin.png")">Usuarios</a>
+            <a href="#" class="menu-item"><img class="icon" src="@Url.Content("~/img/imgLM/IconPedidos.png")">Pedidos</a>
+            <a asp-controller="Categoria" asp-action="ListadoCategoria" class="menu-item"><img class="icon" src="@Url.Content("~/img/imgLM/IconCate.png")">Categorias</a>
         </div>
 
     </nav>
-    <div>
+
+    <!--#D4A645-->
+
+    <main class="container mt-4" style="margin-left: 260px;">
         @RenderBody()
-    </div>
+    </main>
 
     @RenderSection("scripts", required: false);
 </body>

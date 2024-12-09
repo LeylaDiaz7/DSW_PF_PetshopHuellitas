@@ -27,7 +27,7 @@ namespace PetShop_Huellitas.Models
         public int Stock { get; set; }
         public decimal Precio { get; set; }
 
-        [DisplayName("¿Está Activo?")]
+        [DisplayName("¿Activo?")]
         public bool Activo { get; set; }
 
         public Categoria? Categoria { get; set; }

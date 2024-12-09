@@ -5,8 +5,10 @@
 }
 
 body {
-    background-color: azure;
+    background-color: #E5E0D8;
+    font-family: 'Poppins', sans-serif;
 }
+
 
 .logo {
     width: 100%;
@@ -20,22 +22,107 @@ body {
 }
 
 .menu {
-    display: grid;
-    grid-template-columns: repeat(5,1fr)
+    background-color: #2A4D47;
+    width: 250px;
+    height: 100vh;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    left: 0;
+    transition: all 0.3s ease;
+    z-index: 10;
 }
 
 .menu-item {
-    text-align: center;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    display: block;
-    font-size: 18px;
+    color: #f8f9fa;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-weight: 600;
+    margin: 10px 0;
 }
 
     .menu-item:hover {
-        background-color: white;
+        background-color: #809671;
+        color: #ffffff;
     }
 
+.icon {
+    padding: 13px;
+}
+
+/* Barra superior */
+.top-bar {
+    
+    width: calc(100% - 230px);
+    height: 75px;
+    background-color: #2C2C2C;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 45px;
+    position: fixed;
+    top: 0;
+    left: 250px; /* Alinear al lado derecho de la barra lateral */
+    z-index: 20;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Contenido principal */
+main {
+    padding-top: 70px;
+    margin-left: 260px;
+    overflow-y: auto;
+    transition: margin-left 0.3s ease;
+}
+
+/* Barra lateral */
+.sidebar {
+    width: 260px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #2A4D47;
+    color: #ffffff;
+    z-index: 30;
+    padding-top: 60px; /* Espacio para no sobreponerse con la barra superior */
+    overflow-y: auto;
+}
+
+/* Todavia no*/
+.user-photo-container {
+    display: flex;
+    align-items: center;
+}
+
+.user-photo {
+    width: 50px;
+    border-radius: 50%;
+    border: 2px solid #ffffff;
+}
+/**/
+
+main {
+    margin-top: 70px; /* Añade espacio para el header */
+    margin-left: 260px; /* Ajusta para evitar el menú lateral */
+    transition: margin-left 0.3s ease;
+}
+
+.logo-container img {
+    width: 100%;
+    max-width: 150px;
+    height: auto;
+    border-radius: 15px;
+    margin: 0 auto;
+    display: block;
+    border: 2px solid #D4A645;
+}
+/*-----------*/
 .rs {
     width: 60px;
     height: 60px;
@@ -64,3 +151,11 @@ body {
         height: 240px;
         padding-left: 10%;
     }
+
+.table-rounded {
+    border-radius: 10px;
+    overflow: hidden; /* Asegura que el contenido respete los bordes redondeados */
+    
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06); /* Sombra */
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Transición suave */
+}
