@@ -87,9 +87,9 @@ namespace PetShop_Huellitas.Dao
             try
             {
                 ejecutarCRUD(cad_cn, "sp_actualizarproducto",
-            obj.IdPro, obj.Marca, obj.IdCategoria, obj.Nombre,
-            obj.Detalles, obj.UrlImg, obj.Stock,
-            obj.Precio, obj.Activo);
+                obj.IdPro, obj.Marca, obj.IdCategoria, obj.Nombre,
+                obj.Detalles, obj.UrlImg, obj.Stock,
+                obj.Precio, obj.Activo);
                 return $"Producto  {obj.Nombre} actualizado con éxito!";
             }
             catch (Exception ex)
