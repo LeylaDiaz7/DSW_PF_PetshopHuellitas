@@ -1,0 +1,74 @@
+﻿/* Contenedor Principal */
+/* Imagen de fondo para toda la página */
+body {
+    background-image: url('../img/imgLM/fondo_login.jpg'); /* Ruta a la imagen */
+    background-size: cover; /* La imagen cubre toda la pantalla */
+    background-repeat: no-repeat; /* Evita que se repita */
+    background-position: center; /* Centra la imagen */
+    height: 100vh; /* Altura al 100% del viewport */
+    margin: 0; /* Elimina márgenes por defecto */
+    font-family: Arial, sans-serif; /* Fuente base */
+}
+
+/* Contenedor principal */
+.cuadro-main {
+    background: rgba(255, 255, 255, 0.9); /* Fondo semi-transparente */
+    border-radius: 25px; /* Bordes redondeados */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3); /* Sombra para resaltar */
+    max-width: 600px; /* Ancho máximo */
+    margin: 50px auto; /* Centrado */
+    padding: 20px; /* Espaciado interno */
+}
+
+
+/* Sección Izquierda */
+.div-izq img {
+    width: 100%;
+    height: auto;
+}
+
+/* Formulario */
+.formu {
+    padding: 20px;
+    flex-grow: 1;
+    background-color: #f9f9f9;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+}
+
+input.form-control {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.btnLogin {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+    .btnLogin:hover {
+        background-color: #0056b3;
+    }
+
+/* Enlace Olvidar Contraseña */
+.olvide-password {
+    color: #007bff;
+    text-decoration: none;
+}
+
+    .olvide-password:hover {
+        text-decoration: underline;
+    }
