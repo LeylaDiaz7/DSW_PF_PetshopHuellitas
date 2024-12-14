@@ -8,14 +8,28 @@ body {
     height: 100vh; /* Altura al 100% del viewport */
     margin: 0; /* Elimina márgenes por defecto */
     font-family: Arial, sans-serif; /* Fuente base */
+    position: relative; /* Para que la pseudo-clase ::before funcione*/ 
 }
+
+    body::before {
+        content: ''; /* Requerido para mostrar el pseudo-elemento */
+        position: absolute; /* Asegura que cubra todo el body */
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.4); /* Crea un filtro oscuro */
+        pointer-events: none; /* Permite interactuar con los elementos de la página */
+        z-index: -3; /* Asegura que esté sobre el fondo pero detrás del contenido */
+    }
+
 
 /* Contenedor principal */
 .cuadro-main {
-    background: rgba(255, 255, 255, 0.9); /* Fondo semi-transparente */
+    background: #fff4e3; /*Fondo semi-transparente */
     border-radius: 25px; /* Bordes redondeados */
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3); /* Sombra para resaltar */
-    max-width: 600px; /* Ancho máximo */
+    max-width: 500px; /* Ancho máximo */
     margin: 50px auto; /* Centrado */
     padding: 20px; /* Espaciado interno */
 }
@@ -24,14 +38,15 @@ body {
 /* Sección Izquierda */
 .div-izq img {
     width: 100%;
-    height: auto;
+    border-radius: 25px;
+    display: block; /* Hace que la imagen se comporte como un bloque */
+    margin: 0 auto; /* Centra horizontalmente */
 }
 
 /* Formulario */
 .formu {
     padding: 20px;
     flex-grow: 1;
-    background-color: #f9f9f9;
 }
 
 .form-group {
@@ -64,11 +79,11 @@ input.form-control {
     }
 
 /* Enlace Olvidar Contraseña */
-.olvide-password {
+olvide-password {
     color: #007bff;
     text-decoration: none;
 }
 
-    .olvide-password:hover {
-        text-decoration: underline;
-    }
+.olvide-password:hover {
+    text-decoration: underline;
+}

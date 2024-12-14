@@ -3,9 +3,6 @@
 }
 <link href="~/css/EstilosLogin.css" rel="stylesheet" />
 
-<!-- Encabezado de la Página -->
-<h2>Login</h2>
-
 <!-- Contenedor Principal -->
 <div class="cuadro-main">
 
@@ -31,13 +28,15 @@
         </div>
 
         <!-- Botón de Envío -->
-        <button type="submit" class="btnLogin">Login</button>
+        <div class="d-grid gap-2 col-6 mx-auto">
+            <button type="submit" class="btnLogin">Iniciar Sesión</button>
+        </div>
 
         <!-- Validación de Errores -->
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
         <!-- Enlace Olvidar Contraseña -->
-        <div class="text-right">
+        <div class="text-center">
             <a href="#" class="olvide-password">Olvidé mi contraseña</a>
         </div>
     </form>
