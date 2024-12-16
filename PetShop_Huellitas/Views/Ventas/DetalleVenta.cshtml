@@ -1,0 +1,22 @@
+﻿@model PetShop_Huellitas.Models.Venta
+
+@{
+    ViewData["Title"] = "Detalle de Venta";
+    Layout = "~/Views/Shared/LayoutMaster.cshtml";
+}
+
+<div class="container d-flex flex-column align-items-center mt-4">
+    <h1 class="text-center mb-4">Detalle de Venta</h1>
+    <div class="card p-4 shadow" style="max-width: 500px; width: 100%;">
+        <h3 class="text-start">Información de la Venta</h3>
+        <p><strong>ID Venta:</strong> @Model.IdVenta</p>
+        <p><strong>Cliente:</strong> @Model.Contacto</p>
+        <p><strong>Total de Productos:</strong> @Model.CantidadProducto</p>
+        <p><strong>Monto Total:</strong> @Model.MontoTotal.ToString("S/.")</p>
+        <p><strong>Dirección:</strong> @Model.Direccion</p>
+        <p><strong>Fecha:</strong> @Model.FechaVenta.ToString("dd/MM/yyyy")</p>
+    </div>
+    <div class="mt-3">
+        <a asp-action="ListarVentas" class="btn btn-primary">Regresar</a>
+    </div>
+</div>
