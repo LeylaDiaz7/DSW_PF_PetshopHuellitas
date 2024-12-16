@@ -126,7 +126,7 @@ namespace PetShop_Huellitas.Controllers
         }//Fin IAC Edit USU POST
 
         // método para mostrar la vista de confirmación de eliminación
-        public IActionResult EliminarUsuario(int id)
+        public IActionResult Delete(int id)
         {
             Usuario usuario= null;
             using (SqlConnection cn = new SqlConnection(_config["ConnectionStrings:cn"]))
@@ -154,25 +154,29 @@ namespace PetShop_Huellitas.Controllers
         }//FIN IACT ELIMINAR USU
 
         // método para eliminar una categoría en la BD
-        [HttpPost, ActionName("EliminarUsuario")]
-        public IActionResult EliminarUsuarioConfirm(int id)
+        [HttpPost]
+        public IActionResult EliminarUsuario(int id)
         {
-            using (SqlConnection cn = new SqlConnection(_config["ConnectionStrings:cn"]))
+            try
             {
-                SqlCommand cmd = new SqlCommand("sp_eliminar_usuario", cn);
-                cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@IdUsuario", id);
+                using (SqlConnection cn = new SqlConnection(_config["ConnectionStrings:cn"]))
+                {
+                    SqlCommand cmd = new SqlCommand("sp_eliminar_usuario", cn);
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@IdUsuario", id);
 
-                cn.Open();
-                cmd.ExecuteNonQuery();
+                    cn.Open();
+                    cmd.ExecuteNonQuery();
+                }
+                return Json(new { success = true, message = "Usuario eliminado correctamente." });
+
             }
-            return RedirectToAction("ListadoUsuario");
+
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = $"Error: {ex.Message}" });
+            }
         }//FIN IACTI Eliminar USU
-
-
-
-
-
 
 
 

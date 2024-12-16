@@ -73,6 +73,7 @@ namespace PetShop_Huellitas.Dao
             try
             {
                 ejecutarCRUD(cad_cn, "sp_eliminarproducto", codigo);
+
                 return $"Se ha eliminado al producto: {codigo}";
             }
             catch (Exception ex)

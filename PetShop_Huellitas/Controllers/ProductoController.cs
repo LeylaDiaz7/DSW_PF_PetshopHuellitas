@@ -25,7 +25,7 @@ namespace PetShop_Huellitas.Controllers
             ViewBag.idprod = idprod;
 
             // Paginacion
-            int filas_pag = 10; //numero de filas por pagina
+            int filas_pag = 5; //numero de filas por pagina
             int contador = listado.Count; // cantidad de registros - horizontal
             int paginas = 0; //cantidad de paginas a utilizar
 
@@ -149,7 +149,7 @@ namespace PetShop_Huellitas.Controllers
             try
             {
                 TempData["mensaje"] = dao_product.EliminarProducto(id);
-                
+                ViewBag.id = id;
                 return RedirectToAction(nameof(IndexProductos));
             }
             catch (Exception ex)

@@ -189,12 +189,54 @@ namespace PetShop_Huellitas.Controllers
             return View(cliente);
         } // fin del post editar
 
+        //*************************haciendo el eliminar con BD....
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            //instanciamos la respectiva clase...
+            Cliente cli = new Cliente();
+            //obtenemos una conexion...
+            using (SqlConnection cn = new SqlConnection(_config["ConnectionStrings:cn"]))
+            {
+                //invocamos al procedimiento almacenado
+                SqlCommand cmd = new SqlCommand("sp_eliminarcliente @idCli", cn);
+                cmd.Parameters.AddWithValue("@idCli", id);
+                //aperturamos la bd...
+                cn.Open();
+                //recuperamos los datos de la base  de datos y los
+                //almacenamos en las propiedades...
+                using (SqlDataReader dr = cmd.ExecuteReader())
+                {
+                    //aplicamos una condicion...
+                    if (dr.Read())
+                    {
+                        cli.IdCli = Convert.ToInt32(dr["idCli"]);
+                        cli.Nombres = (string)dr["nombres"];
+                        cli.Apellidos = (string)dr["apellidos"];
+                        cli.Direccion = (string)dr["direccion"];
+                        cli.Telefono = (int)dr["telefono"];
+                        cli.Dni = (int)dr["dni"];
+                        cli.Correo = (string)dr["correo"];
+                        cli.Password = (string)dr["password"];
+                        cli.FechaRegistro = (DateTime)dr["FechaRegistro"];
+
+                    }   //fin de la condicion...
+
+
+                }   //fin del using...
+
+            }   //fin del using...
+            //retornamos 
+            return View(cli);
+
+        }   //fin del metodo delete GET....
+
         [HttpPost]
         public IActionResult EliminarCliente(int idCli)
         {
-            using (SqlConnection cn = new SqlConnection(_config["ConnectionStrings:cn"]))
+            try
             {
-                try
+                using (SqlConnection cn = new SqlConnection(_config["ConnectionStrings:cn"]))
                 {
                     SqlCommand cmd = new SqlCommand("sp_eliminarcliente", cn);
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
@@ -202,17 +244,15 @@ namespace PetShop_Huellitas.Controllers
 
                     cn.Open();
                     cmd.ExecuteNonQuery();
-                    cn.Close();
                 }
-                catch (Exception ex)
-                {
-                    ViewBag.Mensaje = $"Error: {ex.Message}";
-                    return RedirectToAction("ListarClientes");
-                }
-            } // fin del using
-
-            return RedirectToAction("ListarClientes");
-        } // fin de eliminar
+                return Json(new { success = true, message = "Cliente eliminado correctamente." });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = $"Error: {ex.Message}" });
+            }
+        }
+        // fin de eliminar
 
     } // fin de controlador
 }

@@ -7,15 +7,15 @@
 <div class="container mt-4">
     <div class="d-flex justify-content-between align-items-center mb-3">
         <h1>Gestión de clientes</h1>
-        <a asp-action="CrearCliente" class="btn btn-primary">
+        <a asp-action="CrearCliente" class="btn btn-outline-success">
             <i class="fas fa-plus"></i>  Nuevo Cliente
         </a>
     </div>
 
     <div class="table-responsive">
-        <table class="table table-striped table-hover">
+        <table class="table table-striped table-hover table-rounded">
             <thead>
-                <tr>
+                <tr class="bg-warning">
                     <th>
                         @Html.DisplayNameFor(model => model.IdCli)
                     </th>
@@ -78,9 +78,13 @@
                             @Html.DisplayFor(modelItem => item.FechaRegistro)
                         </td>
                         <td>
-                            @Html.ActionLink("Editar", "EditarCliente", new { id = item.IdCli }, new { @class = "btn btn-primary ml-2", @role = "button" }) |
-                            @*  @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |*@
-                            <button type="button" class="btn btn-danger ml-2" onclick="eliminarCliente(@item.IdCli)">Eliminar</button>
+                            <div class="d-flex gap-2">
+                                @Html.ActionLink("Editar", "EditarCliente", new { id = item.IdCli }, new { @class = "btn btn-primary btn-sm" }) |
+                                <button type="button" class="btn btn-danger ml-2 eliminar"
+                                        data-url="@Url.Action("EliminarCliente", "Cliente", new { idCli = item.IdCli })">
+                                    Eliminar
+                                </button>
+                            </div>
                         </td>
                     </tr>
                 }
@@ -88,21 +92,7 @@
         </table>
     </div>
 </div>
+
 @section Scripts {
-    <script>
-        function eliminarCliente(idCli) {
-            if (confirm("¿Está seguro de que desea eliminar este cliente?")) {
-                var form = document.createElement("form");
-                form.method = "post";
-                form.action = "/Cliente/EliminarCliente";
-                var input = document.createElement("input");
-                input.type = "hidden";
-                input.name = "idCli";
-                input.value = idCli;
-                form.appendChild(input);
-                document.body.appendChild(form);
-                form.submit();
-            }
-        }
-    </script>
+    <script src="~/js/Modals.js"></script>
 }

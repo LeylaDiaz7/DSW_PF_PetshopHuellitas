@@ -121,7 +121,7 @@ namespace PetShop_Huellitas.Controllers
         }
 
         // método para mostrar la vista de confirmación de eliminación
-        public IActionResult EliminarCategoria(int id)
+        public IActionResult Delete(int id)
         {
             Categoria categoria = null;
             using (SqlConnection cn = new SqlConnection(_config["ConnectionStrings:cn"]))
@@ -145,19 +145,28 @@ namespace PetShop_Huellitas.Controllers
         }
 
         // método para eliminar una categoría en la BD
-        [HttpPost, ActionName("EliminarCategoria")]
-        public IActionResult EliminarCategoriaConfirmado(int id)
+        [HttpPost]
+        public IActionResult EliminarCategoria(int id)
         {
-            using (SqlConnection cn = new SqlConnection(_config["ConnectionStrings:cn"]))
-            {
-                SqlCommand cmd = new SqlCommand("sp_eliminarcategoria", cn);
-                cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@IdCategoria", id);
 
-                cn.Open();
-                cmd.ExecuteNonQuery();
+            try
+            {
+                using (SqlConnection cn = new SqlConnection(_config["ConnectionStrings:cn"]))
+                {
+                    SqlCommand cmd = new SqlCommand("sp_eliminarcategoria", cn);
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@IdCategoria", id);
+
+                    cn.Open();
+                    cmd.ExecuteNonQuery();
+                }
+                return Json(new { success = true, message = "Categoria eliminada correctamente." });
+
             }
-            return RedirectToAction("ListadoCategoria");
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = $"Error: {ex.Message}" });
+            }
         }
 
 

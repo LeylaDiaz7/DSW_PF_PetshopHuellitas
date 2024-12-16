@@ -5,6 +5,7 @@
     Layout = "~/Views/Shared/LayoutMaster.cshtml";
 }
 
+
 <div class="container mt-2">
     <div class="d-flex justify-content-between align-items-center mb-3">
         <h1>Gestión de Productos</h1>
@@ -108,9 +109,9 @@
                         
                         <td>
                             <div class="d-flex gap-2">
-                            @Html.ActionLink("Editar", "EditProducto", new {id=item.IdPro }, new { @class = "btn btn-primary btn-sm" }) |
+                                @Html.ActionLink("Editar", "EditProducto", new {id=item.IdPro }, new { @class = "btn btn-primary btn-sm" }) |
                                 @Html.ActionLink("Detalle", "DetailsProducto", new { id=item.IdPro }, new { @class = "btn btn-secondary btn-sm" }) |
-                            @Html.ActionLink("Eliminar", "DeleteProducto", new {  id=item.IdPro }, new { @class = "btn btn-danger btn-sm" })
+                                @Html.ActionLink("Eliminar", "DeleteProducto", new {  id=item.IdPro }, new { @class = "btn btn-danger btn-sm" })
                             </div>
                         </td>
                     </tr>
@@ -136,17 +137,3 @@
     </div>
 
 </div>
-
-<script>
-    // Configura el tiempo de visualización de la alerta (en milisegundos)
-    setTimeout(function () {
-        var alerta = document.getElementById("alerta");
-        if (alerta) {
-            alerta.style.transition = "opacity 0.5s ease-out";
-            alerta.style.opacity = "0";
-            setTimeout(function () {
-                alerta.remove();
-            }, 500); // Eliminar después de que la transición termine
-        }
-    }, 3000); // Mostrar por 3 segundos
-</script>

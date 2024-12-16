@@ -7,15 +7,15 @@
 
 <div class="container mt-4">
     <div class="d-flex justify-content-between align-items-center mb-3">
-        <h1 class="text-primary">Listado de Categorías</h1>
-        <a asp-action="RegistrarCategoria" class="btn btn-primary">
+        <h1>Gestión de Categorías</h1>
+        <a asp-action="RegistrarCategoria" class="btn btn-outline-success">
             <i class="fas fa-plus"></i> Nueva Categoría
         </a>
     </div>
     <div class="table-responsive">
-        <table class="table table-striped table-hover">
+        <table class="table table-striped table-hover table-rounded align-items-lg-center">
         <thead>
-            <tr>
+            <tr class="bg-warning">
                 <th>
                     @Html.DisplayNameFor(model => model.IdCategoria)
                 </th>
@@ -55,9 +55,14 @@
                         @Html.DisplayFor(modelItem => item.FechaRegistro)
                     </td>
                     <td>
-                        @Html.ActionLink("Editar", "EditarCategoria", new { id = item.IdCategoria }) |
-                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                        @Html.ActionLink("Eliminar", "EliminarCategoria", new { id = item.IdCategoria })
+                        <div class="d-flex gap-2">
+                                @Html.ActionLink("Editar", "EditarCategoria", new { id = item.IdCategoria }, new { @class = "btn btn-primary btn-sm" }) |
+                                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }, new { @class = "btn btn-secondary btn-sm" }) |
+                                <button type="button" class="btn btn-danger btn-sm eliminar"
+                                        data-url="@Url.Action("EliminarCategoria", "Categoria", new { id = item.IdCategoria })">
+                                    Eliminar
+                                </button>
+                        </div>
                     </td>
                 </tr>
             }
@@ -66,3 +71,7 @@
     </div>
 
 </div>
+
+@section Scripts {
+    <script src="~/js/Modals.js"></script>
+}
