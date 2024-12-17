@@ -35,9 +35,9 @@ namespace PetShop_Huellitas.Controllers
             }
             else //con resto diferente a 0
             {
-                paginas= (contador / filas_pag) + 1;
+                paginas = (contador / filas_pag) + 1;
             }
-            
+
             ViewBag.paginas = paginas;
 
             return View(
@@ -53,7 +53,7 @@ namespace PetShop_Huellitas.Controllers
 
             return View(new Producto());
         }
-        
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult CreateProducto(Producto obj)

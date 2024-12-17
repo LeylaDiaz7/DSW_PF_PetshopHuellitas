@@ -6,7 +6,7 @@ using System.Data;
 namespace PetShop_Huellitas.Dao
 {
     //Herando la clase DBHelper para el uso de sus metodos
-    public class ProductoDAO:DBHelper
+    public class ProductoDAO : DBHelper
     {
         private string cad_cn = "";
         //Constructor del dao recibe el iconfiguration
@@ -51,9 +51,9 @@ namespace PetShop_Huellitas.Dao
 
 
         // GrabarProducto
-        public string GrabarProducto(Producto obj) 
+        public string GrabarProducto(Producto obj)
         {
-            try 
+            try
             {
                 ejecutarCRUD(cad_cn, "sp_registrarproducto",
                     obj.Marca, obj.IdCategoria, obj.Nombre,
@@ -61,7 +61,7 @@ namespace PetShop_Huellitas.Dao
                     obj.Precio, obj.Activo);
                 return $"Producto  {obj.Nombre} registrado con éxito!";
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 return ex.Message;
             }

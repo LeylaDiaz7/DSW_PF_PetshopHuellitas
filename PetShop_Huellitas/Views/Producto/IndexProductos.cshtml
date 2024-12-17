@@ -1,5 +1,4 @@
 ﻿@model IEnumerable<PetShop_Huellitas.Models.Producto>
-
 @{
     ViewData["Title"] = "Gestión de productos";
     Layout = "~/Views/Shared/LayoutMaster.cshtml";
@@ -55,7 +54,7 @@
                     <th>
                         @Html.DisplayNameFor(model => model.Precio)
                     </th>
-                    
+
                     <th></th>
                 </tr>
             </thead>
@@ -92,13 +91,13 @@
                             }
                         </td>
                         @*
-                        <td>
-                            @Html.DisplayFor(modelItem => item.UrlImg)
+                    <td>
+                    @Html.DisplayFor(modelItem => item.UrlImg)
                     </td>*@
                         <td>
                             <img src="@Url.Content("/img/Productos/" + item.IdPro +".png")"
-                                 alt="@item.Nombre" 
-                                 style="width:80px;"/>
+                                 alt="@item.Nombre"
+                                 style="width:80px;" />
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.Stock)
@@ -106,7 +105,7 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.Precio)
                         </td>
-                        
+
                         <td>
                             <div class="d-flex gap-2">
                                 @Html.ActionLink("Editar", "EditProducto", new {id=item.IdPro }, new { @class = "btn btn-primary btn-sm" }) |

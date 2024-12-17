@@ -9,7 +9,7 @@
 <div class="container mt-4">
 <div class="d-flex justify-content-between align-items-center mb-3">
     <h1>Gestión de usuarios</h1>
-    <a asp-action="Create" class="btn btn-outline-success">Crear nuevo usuario</a>
+    <a asp-action="RegistrarUsuario" class="btn btn-outline-success">Crear nuevo usuario</a>
 
 </div>
 
@@ -60,7 +60,7 @@
             </td>
             <td>
                     @Html.ActionLink("Edit", "EditarUsuario", new {  id=item.IdUsuario  }, new { @class = "btn btn-primary btn-sm" }) |
-                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+  
                     <button type="button" class="btn btn-danger ml-2 eliminar"
                              data-url="@Url.Action("EliminarUsuario", "Usuario", new { id = item.IdUsuario })">
                        Eliminar
