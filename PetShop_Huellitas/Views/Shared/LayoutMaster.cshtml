@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
 </head>
+
 <body>
 
     <header class="top-bar">
@@ -36,11 +37,11 @@
 
             <a asp-controller="Cliente" asp-action="ListarClientes" class="menu-item"><img class="icon" src="@Url.Content("~/img/imgLM/IconCli.png")">Clientes</a>
             <a asp-controller="Producto" asp-action="IndexProductos" class="menu-item"><img class="icon" src="@Url.Content("~/img/imgLM/IconP.png")">Productos</a>
-            <a href="#" class="menu-item"><img class="icon" src="@Url.Content("~/img/imgLM/detalles.png")">Detalles</a>
+            <a asp-controller="Categoria" asp-action="ListadoCategoria" class="menu-item"><img class="icon" src="@Url.Content("~/img/imgLM/IconCate.png")">Categorias</a>
             <a asp-controller="Ventas" asp-action="ListarVentas" class="menu-item"><img class="icon" src="@Url.Content("~/img/imgLM/IconVentas.png")">Ventas</a>
             <a asp-controller="Usuario" asp-action="ListadoUsuario" class="menu-item"><img class="icon" src="@Url.Content("~/img/imgLM/IconAdmin.png")">Usuarios</a>
             <a href="#" class="menu-item"><img class="icon" src="@Url.Content("~/img/imgLM/IconPedidos.png")">Pedidos</a>
-            <a asp-controller="Categoria" asp-action="ListadoCategoria" class="menu-item"><img class="icon" src="@Url.Content("~/img/imgLM/IconCate.png")">Categorias</a>
+            
         </div>
 
     </nav>

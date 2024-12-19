@@ -108,7 +108,6 @@ namespace PetShop_Huellitas.Controllers
 
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public IActionResult EditProducto(int id, Producto obj)
         {
             try
